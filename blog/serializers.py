@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email']
 
 class BlogSerializer(serializers.ModelSerializer):
-    author = UserSerializer(read_only=False)
+    author = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Blog
