@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 
 from blog.models import Blog
-from blog.serializers import UserSerializer
+from blog.serializers import UserSerializer, BlogSerializer
 
 User = get_user_model()
 
@@ -51,3 +51,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 # /blog   GET => List   POST => Create
 # /blog/1   GET => Detail   PUT,PATCH => Update  Delete => Delete
+
+class BlogViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Blog.objects.all().order_by('-created_at').select_related('author')
+    serializer_class = BlogSerializer

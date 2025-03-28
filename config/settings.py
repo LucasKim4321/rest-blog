@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     # 3rd party
     'rest_framework',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
